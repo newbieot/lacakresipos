@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>Bulk Lacak PosIND - Mitra</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Warna PosIND */
+            --delft-blue: #1C2D5A;
+            --cinnabar: #EF4123;
+            --white: #FFFFFF;
+            --gray-light: #F4F6F9;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--gray-light);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        .container {
+            background-color: var(--white);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            margin: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(28, 45, 90, 0.15);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        /* Hiasan atas */
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--cinnabar) 30%, var(--delft-blue) 30%);
+        }
+
+        /* LOGO AREA */
+        .logo-area {
+            margin-bottom: 25px;
+            margin-top: 15px;
+        }
+
+        .logo-placeholder {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--delft-blue);
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .logo-accent {
+            color: var(--cinnabar) !important;
+        }
+        
+        .logo-tagline {
+            font-size: 16px;
+            color: var(--delft-blue);
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: var(--delft-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* Form Area */
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 15px;
+            color: var(--delft-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* TEXTAREA untuk Multi Input */
+        textarea {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            border: 2px solid #E0E0E0;
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-family: 'Sora', sans-serif;
+            color: var(--delft-blue);
+            font-weight: 500;
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--delft-blue);
+            background-color: #F8FAFF;
+        }
+
+        /* Tombol */
+        button {
+            width: 100%;
+            background-color: var(--cinnabar);
+            color: var(--white);
+            border: none;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Sora', sans-serif;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 10px rgba(239, 65, 35, 0.3);
+        }
+
+        button:hover {
+            background-color: #d13215;
+        }
+
+        /* Area Hasil (List) */
+        #result-area {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .result-header {
+            text-align: left;
+            font-size: 14px;
+            font-weight: 700;
+            color: #666;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Kartu per Resi */
+        .result-card {
+            background-color: #EEF2FF;
+            border: 1px solid #D0D8F0;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .resi-number {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--delft-blue);
+            letter-spacing: 0.5px;
+        }
+
+        .resi-link-btn {
+            background-color: var(--delft-blue);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            transition: opacity 0.2s;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .resi-link-btn:hover {
+            opacity: 0.9;
+        }
+        
+        @media (min-width: 480px) {
+            .result-card {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .resi-link-btn {
+                width: auto;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            border-top: 2px solid #f0f0f0;
+            padding-top: 20px;
+            color: #888;
+        }
+        
+        .footer-tagline {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--delft-blue);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .footer-credits {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .footer-credits strong {
+            color: var(--delft-blue);
+            font-weight: 700;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-bar"></div>
+
+        <div class="logo-area">
+            <div class="logo-placeholder">
+                POS<span class="logo-accent">IND</span>
+            </div>
+            <div class="logo-tagline">Logistik Indonesia</div>
+        </div>
+
+        <h1>Bulk Tracking Antaran</h1>
+
+        <div class="form-group">
+            <label for="resiInput">Masukkan Nomor Resi (Satu per baris):</label>
+            <textarea id="resiInput" placeholder="P2601080046258&#10;P2601080099999&#10;P2601080088888"></textarea>
+            <div style="font-size: 12px; color: #888; margin-top: 5px;">*Pisahkan setiap nomor resi dengan menekan Enter.</div>
+        </div>
+
+        <button onclick="generateBulkLinks()">PROSES SEMUA RESI</button>
+
+        <div id="result-area">
+            <div class="result-header">Hasil Pencarian:</div>
+            <div id="cards-container">
+                </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-tagline">Together to Accelerate</div>
+            <div class="footer-credits">
+                Created by : <br>
+                <strong>Corporate Sales Team KCU Batam 29400</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateBulkLinks() {
+            var rawInput = document.getElementById("resiInput").value;
+            
+            if (rawInput.trim() === "") {
+                alert("Mohon masukkan minimal satu nomor resi.");
+                return;
+            }
+
+            var resiList = rawInput.split(/\r?\n/);
+            
+            var container = document.getElementById("cards-container");
+            var resultArea = document.getElementById("result-area");
+            
+            container.innerHTML = "";
+            
+            var count = 0;
+
+            resiList.forEach(function(resi) {
+                var cleanResi = resi.trim();
+
+                if (cleanResi !== "") {
+                    count++;
+                    
+                    // KODE UPDATE: "kibana" diubah menjadi "kibananew"
+                    var finalUrl = "https://kibananew.posindonesia.co.id:4433/x123449/xhdhhdencript12092003posaja.php?id=" + cleanResi;
+
+                    var cardHtml = `
+                        <div class="result-card">
+                            <div class="resi-number">#${cleanResi}</div>
+                            <a href="${finalUrl}" target="_blank" class="resi-link-btn">
+                                LIHAT LOKASI & FOTO
+                            </a>
+                        </div>
+                    `;
+                    
+                    container.innerHTML += cardHtml;
+                }
+            });
+
+            if (count > 0) {
+                resultArea.style.display = "block";
+            } else {
+                alert("Tidak ada nomor resi yang valid ditemukan.");
+            }
+        }
+    </script>
+
+</body>
+</html>
