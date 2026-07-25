@@ -170,18 +170,39 @@
 
     function openTabs(items) {
         let opened = 0;
+        let firstTrackingTab = null;
 
-        // Buka sesuai urutan input, dari resi paling atas ke paling bawah.
-        // Pada Edge/Chrome, setiap tab baru biasanya disisipkan di dekat tab asal,
-        // sehingga tab yang dibuka lebih dahulu terdorong ke kanan oleh tab berikutnya.
-        items.forEach((item) => {
+        /*
+         * Firefox, Edge, dan sebagian konfigurasi Chrome menyisipkan setiap tab
+         * baru tepat di sebelah tab asal. Karena itu slot tab harus dibuat dari
+         * resi paling bawah ke paling atas. Hasil akhirnya tetap tersusun seperti
+         * daftar input: resi pertama paling kiri dan resi terakhir paling kanan.
+         * Resi pertama dibuka paling akhir agar langsung menjadi tab aktif.
+         */
+        for (let index = items.length - 1; index >= 0; index -= 1) {
+            const item = items[index];
             const tab = window.open("about:blank", "_blank");
-            if (!tab) return;
+            if (!tab) continue;
 
-            tab.opener = null;
-            tab.location.replace(item.url);
+            try {
+                tab.opener = null;
+                tab.location.replace(item.url);
+            } catch (error) {
+                tab.location.href = item.url;
+            }
+
+            if (index === 0) firstTrackingTab = tab;
             opened += 1;
-        });
+        }
+
+        // Pastikan hasil resi pada baris pertama yang terlihat lebih dahulu.
+        if (firstTrackingTab) {
+            try {
+                firstTrackingTab.focus();
+            } catch (error) {
+                // Browser boleh mengabaikan focus(); urutan tab tetap sudah benar.
+            }
+        }
 
         return opened;
     }

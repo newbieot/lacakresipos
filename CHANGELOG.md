@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-07-25 — Firefox Tab Order & Active Result Fix
+
+- Opened tab slots in reverse creation order to match Firefox/Edge adjacent-tab insertion behavior.
+- The final visible tab order now follows the input list from top to bottom.
+- The first tracking number is opened last and explicitly focused, so its result is shown first.
+- Added a version query to `assets/app.js` to prevent an older cached script from being reused after deployment.
+- Applied the same sequence to full-list and batch opening.
+
 ## 2026-07-25 — Edge/Chrome Opening Sequence Fix
 
 - Removed the reversed bulk-opening loop.
