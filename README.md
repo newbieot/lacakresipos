@@ -7,7 +7,7 @@ Static Cloudflare Pages utility for opening PosIND delivery location and photo r
 - Paste tracking numbers from Excel, WhatsApp, or plain text.
 - Accept newline, comma, semicolon, tab, and space separators.
 - Normalize uppercase values and remove duplicates.
-- Open all tracking results in separate tabs with one click.
+- Open all tracking results in separate tabs with one click, requested from the top input row downward.
 - Open results in batches of up to 10 when browsers limit pop-ups.
 - Preview individual results and copy all tracking links.
 - Tracking numbers are processed only in the browser.

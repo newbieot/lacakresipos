@@ -171,10 +171,10 @@
     function openTabs(items) {
         let opened = 0;
 
-        // Browser biasanya menyisipkan tab baru tepat di sebelah tab aktif.
-        // Buka dari urutan terbawah ke teratas agar susunan tab akhirnya tetap
-        // sama seperti urutan resi pada input: resi pertama muncul sebagai tab pertama.
-        [...items].reverse().forEach((item) => {
+        // Buka sesuai urutan input, dari resi paling atas ke paling bawah.
+        // Pada Edge/Chrome, setiap tab baru biasanya disisipkan di dekat tab asal,
+        // sehingga tab yang dibuka lebih dahulu terdorong ke kanan oleh tab berikutnya.
+        items.forEach((item) => {
             const tab = window.open("about:blank", "_blank");
             if (!tab) return;
 
@@ -188,7 +188,7 @@
 
     function reportOpenResult(requested, opened) {
         if (opened === requested) {
-            setStatus(`${opened} tab hasil pelacakan berhasil diminta untuk dibuka.`, "success");
+            setStatus(`${opened} tab berhasil dibuka dari resi teratas ke resi terbawah.`, "success");
             return;
         }
 

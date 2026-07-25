@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-25 — Edge/Chrome Opening Sequence Fix
+
+- Removed the reversed bulk-opening loop.
+- Tracking tabs are now requested in the exact input order, from the top row downward.
+- This matches Edge/Chrome behavior where each newer background tab is inserted beside the source tab and earlier tabs are pushed to the right.
+- Updated the on-page guidance and success message to explain the sequence.
+
 ## 2026-07-25 — Tracking Tab Order Fix
 
 - Fixed bulk-opening order so the first tracking number entered appears as the first result tab.
