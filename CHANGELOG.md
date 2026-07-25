@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-07-25 — Tracking Tab Order Fix
+
+- Fixed bulk-opening order so the first tracking number entered appears as the first result tab.
+- Applied the same ordering behavior to full-list and batch opening.
+
 ## 2026-07-25 — UI/UX Redesign
 
 - Rebuilt the interface as a responsive PosNew Hub tracking workspace.

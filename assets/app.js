@@ -171,7 +171,10 @@
     function openTabs(items) {
         let opened = 0;
 
-        items.forEach((item) => {
+        // Browser biasanya menyisipkan tab baru tepat di sebelah tab aktif.
+        // Buka dari urutan terbawah ke teratas agar susunan tab akhirnya tetap
+        // sama seperti urutan resi pada input: resi pertama muncul sebagai tab pertama.
+        [...items].reverse().forEach((item) => {
             const tab = window.open("about:blank", "_blank");
             if (!tab) return;
 
