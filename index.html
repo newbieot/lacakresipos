@@ -3,375 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="robots" content="noindex, nofollow">
-    
-    <title>Bulk Lacak PosIND - Mitra by Ikhsan Radiansyah</title>
+    <meta name="theme-color" content="#1c2d5a">
+    <meta name="description" content="Buka hasil lacak lokasi dan foto antaran untuk banyak nomor resi PosIND sekaligus dengan lebih cepat.">
+    <meta name="keywords" content="lacak resi PosIND, bulk tracking Pos Indonesia, lacak foto antaran, PosNew Hub">
+    <meta name="author" content="Ikhsan Radiansyah">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:title" content="Bulk Tracking Antaran | PosNew Hub">
+    <meta property="og:description" content="Masukkan banyak resi dan buka seluruh hasil lokasi serta foto antaran dalam satu langkah.">
+    <meta property="og:url" content="https://lacak.posnew.com/">
+
+    <title>Bulk Tracking Antaran | PosNew Hub</title>
+    <link rel="canonical" href="https://lacak.posnew.com/">
     <link rel="icon" type="image/png" href="favicon-lacakresipos.png">
-    
+    <link rel="manifest" href="manifest.webmanifest">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* Warna Resmi PosIND */
-            --delft-blue: #1C2D5A;
-            --cinnabar: #EF4123;
-            --white: #FFFFFF;
-            --gray-light: #F4F6F9;
-            --text-dark: #333333;
-        }
-
-        body {
-            /* Menggunakan Gantari untuk Body Text sesuai guideline */
-            font-family: 'Gantari', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--gray-light);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            color: var(--text-dark);
-        }
-
-        .container {
-            background-color: var(--white);
-            width: 100%;
-            max-width: 650px;
-            padding: 40px;
-            margin: 40px 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(28, 45, 90, 0.10);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            height: fit-content;
-        }
-
-        /* Hiasan atas */
-        .top-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(90deg, var(--cinnabar) 30%, var(--delft-blue) 30%);
-        }
-
-        /* LOGO AREA (Danantara Kiri & PosIND Kanan) */
-        .header-logos {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 35px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #E2E8F0;
-        }
-
-        .logo-danantara {
-            height: 32px;
-            object-fit: contain;
-        }
-
-        .logo-posind {
-            height: 38px;
-            object-fit: contain;
-        }
-
-        /* Menggunakan Sora untuk Headline */
-        h1 {
-            font-family: 'Sora', sans-serif;
-            font-size: 24px;
-            color: var(--delft-blue);
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-
-        /* Form Area */
-        .form-group {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        label {
-            font-family: 'Sora', sans-serif;
-            font-size: 15px;
-            color: var(--delft-blue);
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        /* TEXTAREA untuk Multi Input */
-        textarea {
-            width: 100%;
-            padding: 16px;
-            font-size: 15px;
-            border: 2px solid #E2E8F0;
-            border-radius: 12px;
-            box-sizing: border-box;
-            font-family: 'Gantari', sans-serif;
-            color: var(--delft-blue);
-            font-weight: 500;
-            min-height: 160px;
-            resize: vertical;
-            line-height: 1.6;
-            transition: all 0.3s ease;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--delft-blue);
-            background-color: #F8FAFF;
-            box-shadow: 0 0 0 3px rgba(28, 45, 90, 0.1);
-        }
-
-        .helper-text {
-            font-size: 13px;
-            color: #64748B;
-            margin-top: 8px;
-            font-weight: 500;
-        }
-
-        /* Tombol - Menggunakan Sora Bold */
-        button {
-            width: 100%;
-            background-color: var(--cinnabar);
-            color: var(--white);
-            border: none;
-            padding: 18px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 12px;
-            cursor: pointer;
-            font-family: 'Sora', sans-serif;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(239, 65, 35, 0.25);
-        }
-
-        button:hover {
-            background-color: #d13215;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(239, 65, 35, 0.35);
-        }
-
-        /* Area Hasil (List) */
-        #result-area {
-            margin-top: 35px;
-            display: none;
-        }
-
-        .result-header {
-            text-align: left;
-            font-family: 'Sora', sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--delft-blue);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #F1F5F9;
-        }
-
-        /* Kartu per Resi */
-        .result-card {
-            background-color: #F8FAFF;
-            border: 1px solid #E2E8F0;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-            text-align: left;
-            transition: all 0.2s ease;
-        }
-
-        .result-card:hover {
-            border-color: #CBD5E1;
-            background-color: #F1F5F9;
-        }
-
-        .resi-number {
-            font-family: 'Sora', sans-serif;
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--delft-blue);
-            letter-spacing: 0.5px;
-        }
-
-        .resi-link-btn {
-            background-color: var(--delft-blue);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-family: 'Sora', sans-serif;
-            font-weight: 600;
-            display: inline-block;
-            transition: opacity 0.2s;
-            width: 100%;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        .resi-link-btn:hover {
-            opacity: 0.9;
-        }
-        
-        @media (min-width: 480px) {
-            .result-card {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-            .resi-link-btn {
-                width: auto;
-            }
-        }
-
-        /* DASHBOARD FOOTER (UNIVERSAL & MUTLAK 1 BARIS) */
-        .dashboard-footer {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #0f172a;
-            border-top: 3px solid var(--cinnabar);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
-            margin-top: auto;
-            font-family: 'Gantari', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            z-index: 20;
-            height: 60px; /* Mengunci tinggi agar mutlak 1 baris */
-            overflow: hidden;
-        }
-        .footer-brand {
-            display: flex; align-items: center; gap: 8px;
-            color: #f8fafc; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;
-            white-space: nowrap; font-family: 'Sora', sans-serif;
-        }
-        .footer-desc { 
-            color: #94a3b8; font-size: 0.8rem; margin: 0 15px; 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            text-align: center; flex: 1;
-        }
-        .footer-creator-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: rgba(239, 65, 35, 0.1); border: 1px solid rgba(239, 65, 35, 0.2);
-            padding: 5px 14px; border-radius: 20px; color: #e2e8f0; font-size: 0.75rem;
-            white-space: nowrap; transition: all 0.3s ease;
-        }
-        .footer-creator-badge:hover { 
-            background: rgba(239, 65, 35, 0.2); border-color: rgba(239, 65, 35, 0.5); 
-        }
-        .footer-creator-badge strong { color: var(--cinnabar); font-weight: 600; }
-
-        /* Responsif Mobile */
-        @media (max-width: 850px) {
-            .dashboard-footer { 
-                flex-direction: column; justify-content: center; gap: 8px; 
-                padding: 15px; height: auto; 
-            }
-            .footer-desc { display: none; }
-        }
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
 
-    <div class="container">
-        <div class="top-bar"></div>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand-link" href="https://posnew.com/" aria-label="Kembali ke PosNew Hub">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4.5 7.5 7.5 4.2 7.5-4.2M12 12v8.2"/></svg>
+                </span>
+                <span>
+                    <strong>PosNew Hub</strong>
+                    <small>Bulk Tracking Workspace</small>
+                </span>
+            </a>
 
-        <div class="header-logos">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Danantara_Indonesia.svg/960px-Danantara_Indonesia.svg.png?_=20250304063014" alt="Danantara Logo" class="logo-danantara">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/POSIND_2023.svg/330px-POSIND_2023.svg.png" alt="PosIND Logo" class="logo-posind">
+            <a class="back-link" href="https://posnew.com/">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                All tools
+            </a>
         </div>
+    </header>
 
-        <h1>Bulk Tracking Antaran</h1>
+    <main id="main-content">
+        <section class="hero-shell" aria-labelledby="page-title">
+            <div class="hero-copy">
+                <span class="eyebrow">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    Delivery proof checker
+                </span>
+                <h1 id="page-title">Track many shipments.<br><span>Open every result at once.</span></h1>
+                <p>Tempel semua nomor resi, lalu buka halaman lokasi dan foto antaran PosIND secara serentak—tanpa harus mengeklik satu per satu.</p>
 
-        <div class="form-group">
-            <label for="resiInput">Masukkan Nomor Resi (Satu per baris):</label>
-            <textarea id="resiInput" placeholder="P2601080046258&#10;P2601080099999&#10;P2601080088888"></textarea>
-            <div class="helper-text">*Pisahkan setiap nomor resi dengan menekan tombol Enter.</div>
-        </div>
-
-        <button onclick="generateBulkLinks()">PROSES SEMUA RESI</button>
-
-        <div id="result-area">
-            <div class="result-header">Hasil Pencarian:</div>
-            <div id="cards-container">
+                <div class="trust-row" aria-label="Keunggulan layanan">
+                    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> Diproses di browser</span>
+                    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 3 8.2 7 10 4-1.8 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> Resi tidak disimpan</span>
+                    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12h8M12 8l4 4-4 4"/><rect x="3" y="4" width="18" height="16" rx="3"/></svg> Buka banyak tab</span>
                 </div>
-        </div>
-    </div> <footer class="dashboard-footer">
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="visual-orbit visual-orbit-one"></div>
+                <div class="visual-orbit visual-orbit-two"></div>
+                <div class="visual-card visual-card-main">
+                    <div class="visual-card-top">
+                        <span class="mini-icon"><svg viewBox="0 0 24 24"><path d="M3 7h13v10H3z"/><path d="M16 10h3l2 3v4h-5zM7 17a2 2 0 1 0 0 .1M18 17a2 2 0 1 0 0 .1"/></svg></span>
+                        <span>Shipment batch</span>
+                        <b>12</b>
+                    </div>
+                    <div class="visual-lines"><i></i><i></i><i></i></div>
+                    <div class="visual-action"><span>Open all tracking results</span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
+                </div>
+                <div class="visual-card visual-card-small visual-card-left"><b>01</b><span>Paste</span></div>
+                <div class="visual-card visual-card-small visual-card-right"><b>02</b><span>Open</span></div>
+            </div>
+        </section>
+
+        <section class="workspace-shell" aria-labelledby="tracker-title">
+            <div class="workspace-grid">
+                <div class="input-panel">
+                    <div class="panel-heading">
+                        <span class="step-number">1</span>
+                        <div>
+                            <h2 id="tracker-title">Masukkan nomor resi</h2>
+                            <p>Satu per baris, atau pisahkan dengan koma, spasi, dan tab.</p>
+                        </div>
+                    </div>
+
+                    <label class="input-label" for="resiInput">Daftar nomor resi</label>
+                    <div class="textarea-wrap">
+                        <textarea id="resiInput" spellcheck="false" autocomplete="off" placeholder="P2601080046258&#10;P2601080099999&#10;P2601080088888" aria-describedby="inputHelp inputStats"></textarea>
+                        <button class="clear-input" id="clearInputBtn" type="button" aria-label="Hapus seluruh input" hidden>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="input-meta">
+                        <p id="inputHelp">Bisa ditempel langsung dari Excel, WhatsApp, atau dokumen teks.</p>
+                        <div id="inputStats" class="stats-pills" aria-live="polite">
+                            <span><strong id="validCount">0</strong> valid</span>
+                            <span><strong id="duplicateCount">0</strong> duplikat</span>
+                        </div>
+                    </div>
+
+                    <div id="validationMessage" class="validation-message" role="alert" hidden></div>
+
+                    <div class="primary-actions">
+                        <button class="primary-button" id="openAllBtn" type="button" disabled>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4 10 14"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg>
+                            <span id="openAllLabel">Buka semua hasil</span>
+                        </button>
+                        <button class="secondary-button" id="previewBtn" type="button" disabled>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+                            Preview daftar
+                        </button>
+                    </div>
+
+                    <div class="popup-note">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>
+                        <p>Browser mungkin meminta izin membuka beberapa tab. Pilih <strong>Allow pop-ups</strong> untuk situs ini agar seluruh hasil dapat terbuka.</p>
+                    </div>
+                </div>
+
+                <aside class="guide-panel" aria-labelledby="guide-title">
+                    <div class="panel-heading compact">
+                        <span class="step-number dark">2</span>
+                        <div>
+                            <h2 id="guide-title">Satu klik, semua terbuka</h2>
+                            <p>Alur paling cepat untuk mengecek bukti antaran.</p>
+                        </div>
+                    </div>
+
+                    <ol class="steps-list">
+                        <li>
+                            <span>01</span>
+                            <div><strong>Paste semua resi</strong><p>Sistem otomatis merapikan huruf, pemisah, dan data duplikat.</p></div>
+                        </li>
+                        <li>
+                            <span>02</span>
+                            <div><strong>Klik “Buka semua hasil”</strong><p>Setiap resi akan dibuka pada tab hasil pelacakan tersendiri.</p></div>
+                        </li>
+                        <li>
+                            <span>03</span>
+                            <div><strong>Izinkan pop-up bila diminta</strong><p>Gunakan tombol batch atau salin link jika browser membatasi tab.</p></div>
+                        </li>
+                    </ol>
+
+                    <div class="privacy-card">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 3 8.2 7 10 4-1.8 7-5.4 7-10V6l-7-3Z"/><path d="M9.5 12h5M12 9.5v5"/></svg>
+                        <div><strong>Private by design</strong><p>Daftar resi hanya diproses sementara di perangkat Anda dan tidak dikirim ke server PosNew Hub.</p></div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="resultArea" class="results-shell" aria-labelledby="resultsTitle" hidden>
+            <div class="results-header">
+                <div>
+                    <span class="eyebrow small">Ready to track</span>
+                    <h2 id="resultsTitle"><span id="resultCount">0</span> resi siap dibuka</h2>
+                    <p id="resultSummary">Klik satu per satu atau gunakan aksi massal di bawah.</p>
+                </div>
+                <div class="result-actions">
+                    <button class="batch-button" id="openBatchBtn" type="button">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h11v11M19 5 5 19"/><path d="M5 8v11h11"/></svg>
+                        <span id="openBatchLabel">Buka 10 berikutnya</span>
+                    </button>
+                    <button class="ghost-button" id="copyLinksBtn" type="button">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+                        Salin semua link
+                    </button>
+                </div>
+            </div>
+
+            <div id="statusMessage" class="status-message" aria-live="polite" hidden></div>
+            <div id="cardsContainer" class="cards-container"></div>
+        </section>
+    </main>
+
+    <footer class="dashboard-footer">
         <div class="footer-brand">
-            <i data-lucide="layers" style="color: #EF4123; width: 18px; height: 18px;"></i>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4.5 7.5 7.5 4.2 7.5-4.2M12 12v8.2"/></svg>
             PosNew Hub
         </div>
-        <p class="footer-desc">Sistem utilitas ini dikembangkan secara independen untuk optimalisasi efisiensi layanan logistik B2B dan Ritel.</p>
-        <div class="footer-creator-badge">
-            <i data-lucide="code-2" style="color: #EF4123; width: 14px; height: 14px;"></i>
-            Inovasi oleh <strong>Ikhsan Radiansyah</strong> &copy; 2026
-        </div>
+        <p class="footer-desc">A faster workspace for reviewing PosIND delivery location and photo results.</p>
+        <a class="footer-creator-badge" href="https://posnew.com/about-me.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M14 5l-4 14"/></svg>
+            Created by <strong>Ikhsan Radiansyah</strong> · 2026
+        </a>
     </footer>
 
-    <script>
-        function generateBulkLinks() {
-            var rawInput = document.getElementById("resiInput").value;
-            
-            if (rawInput.trim() === "") {
-                alert("Mohon masukkan minimal satu nomor resi.");
-                return;
-            }
-
-            var resiList = rawInput.split(/\r?\n/);
-            
-            var container = document.getElementById("cards-container");
-            var resultArea = document.getElementById("result-area");
-            
-            container.innerHTML = "";
-            
-            var count = 0;
-
-            resiList.forEach(function(resi) {
-                var cleanResi = resi.trim();
-
-                if (cleanResi !== "") {
-                    count++;
-                    
-                    var finalUrl = "https://kibananew.posindonesia.co.id:4433/x123449/xhdhhdencript12092003posaja.php?id=" + cleanResi;
-
-                    var cardHtml = `
-                        <div class="result-card">
-                            <div class="resi-number">#${cleanResi}</div>
-                            <a href="${finalUrl}" target="_blank" class="resi-link-btn">
-                                LIHAT LOKASI & FOTO
-                            </a>
-                        </div>
-                    `;
-                    
-                    container.innerHTML += cardHtml;
-                }
-            });
-
-            if (count > 0) {
-                resultArea.style.display = "block";
-            } else {
-                alert("Tidak ada nomor resi yang valid ditemukan.");
-            }
-        }
-    </script>
-
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    </script>
-
+    <noscript>
+        <div class="noscript-message">JavaScript harus diaktifkan untuk menggunakan fitur bulk tracking.</div>
+    </noscript>
+    <script src="assets/app.js" defer></script>
 </body>
 </html>

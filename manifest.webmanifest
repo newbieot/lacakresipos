@@ -1,0 +1,16 @@
+{
+  "name": "Bulk Tracking Antaran - PosNew Hub",
+  "short_name": "Bulk Tracking",
+  "description": "Buka hasil lokasi dan foto antaran PosIND untuk banyak nomor resi sekaligus.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#eef2f7",
+  "theme_color": "#1c2d5a",
+  "icons": [
+    {
+      "src": "favicon-lacakresipos.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
