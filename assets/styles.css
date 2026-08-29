@@ -251,6 +251,116 @@ button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 3px sol
 .popup-note svg { flex: 0 0 auto; width: 17px; margin-top: .1rem; color: var(--orange); }
 .popup-note p { margin: 0; }
 
+.popup-lock-notice {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: .75rem;
+    margin-top: .9rem;
+    padding: .8rem;
+    border: 1px solid #edc98d;
+    border-radius: 12px;
+    color: #7a4600;
+    background: #fff8e9;
+}
+.popup-lock-notice[hidden] { display: none; }
+.popup-lock-notice > svg { width: 22px; color: var(--warning); }
+.popup-lock-notice strong { display: block; font-family: "Sora", sans-serif; font-size: .78rem; }
+.popup-lock-notice p { margin: .2rem 0 0; color: #8a5a16; font-size: .73rem; line-height: 1.4; }
+.popup-lock-notice button {
+    min-height: 39px;
+    padding: .5rem .7rem;
+    border: 1px solid #d5a557;
+    border-radius: 9px;
+    color: #6d3f00;
+    background: white;
+    font-family: "Sora", sans-serif;
+    font-size: .7rem;
+    font-weight: 750;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.popup-lock-notice button:hover { border-color: var(--warning); background: #fffdf8; }
+
+.permission-dialog {
+    width: min(520px, calc(100% - 28px));
+    max-width: none;
+    max-height: min(760px, calc(100dvh - 28px));
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    border: 0;
+    border-radius: 24px;
+    color: var(--ink);
+    background: white;
+    box-shadow: 0 28px 90px rgba(10, 20, 45, .3);
+}
+.permission-dialog::backdrop { background: rgba(10, 20, 42, .72); backdrop-filter: blur(5px); }
+.permission-dialog-inner { position: relative; padding: 2rem; }
+.permission-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 11px;
+    color: var(--muted);
+    background: var(--surface-soft);
+    cursor: pointer;
+}
+.permission-close:hover { color: white; background: var(--orange); }
+.permission-close svg { width: 18px; }
+.permission-icon {
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 1rem;
+    border-radius: 16px;
+    color: white;
+    background: var(--orange);
+    box-shadow: 0 12px 28px rgba(239, 65, 35, .25);
+}
+.permission-icon svg { width: 27px; }
+.permission-kicker {
+    color: var(--orange);
+    font-family: "Sora", sans-serif;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+.permission-dialog h2 { margin: .45rem 3rem .6rem 0; color: var(--navy-deep); font-family: "Sora", sans-serif; font-size: 1.45rem; letter-spacing: -.03em; }
+.permission-dialog h2 + p { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.55; }
+.permission-steps { margin-top: 1.15rem; padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-soft); }
+.permission-steps ol { margin: 0; padding-left: 1.25rem; }
+.permission-steps li { padding-left: .25rem; color: #536076; font-size: .82rem; line-height: 1.5; }
+.permission-steps li + li { margin-top: .65rem; }
+.permission-steps strong { color: var(--navy-deep); }
+.permission-check-note { display: flex; align-items: flex-start; gap: .5rem; margin: .9rem 0 0; color: var(--muted); font-size: .72rem; line-height: 1.45; }
+.permission-check-note span { flex: 0 0 auto; width: 8px; height: 8px; margin-top: .2rem; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 4px rgba(20, 128, 94, .12); }
+.permission-check-status { margin-top: .8rem; padding: .7rem .8rem; border: 1px solid #edc98d; border-radius: 10px; color: #7a4600; background: #fff8e9; font-size: .78rem; line-height: 1.45; }
+.permission-actions { display: grid; grid-template-columns: 1fr auto; gap: .65rem; margin-top: 1.15rem; }
+.permission-primary,
+.permission-secondary {
+    min-height: 48px;
+    padding: .7rem .9rem;
+    border-radius: 11px;
+    font-family: "Sora", sans-serif;
+    font-size: .78rem;
+    font-weight: 750;
+    cursor: pointer;
+}
+.permission-primary { border: 1px solid var(--orange); color: white; background: var(--orange); box-shadow: 0 9px 20px rgba(239, 65, 35, .2); }
+.permission-primary:hover { background: var(--orange-dark); }
+.permission-secondary { border: 1px solid var(--line); color: var(--navy); background: white; }
+.permission-secondary:hover { border-color: var(--navy); background: var(--surface-soft); }
+body.permission-dialog-open { overflow: hidden; }
+
 .steps-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.2rem; }
 .steps-list li { display: grid; grid-template-columns: 34px 1fr; gap: .8rem; }
 .steps-list > li > span { font-family: "Sora", sans-serif; color: #ff8a73; font-size: .7rem; font-weight: 800; letter-spacing: .08em; }
@@ -338,6 +448,18 @@ button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 3px sol
     .footer-desc { display: none; }
     .dashboard-footer { height: 36px; padding: 0 10px; font-size: .65rem; }
     .footer-creator-badge { padding-inline: .45rem; }
+    .popup-lock-notice { grid-template-columns: auto minmax(0, 1fr); }
+    .popup-lock-notice button { grid-column: 1 / -1; width: 100%; min-height: 46px; }
+    .permission-dialog {
+        width: 100%;
+        max-height: min(88dvh, 760px);
+        margin: auto 0 0;
+        border-radius: 22px 22px 0 0;
+    }
+    .permission-dialog-inner { padding: 1.5rem max(1.2rem, env(safe-area-inset-right)) max(1.4rem, env(safe-area-inset-bottom)) max(1.2rem, env(safe-area-inset-left)); }
+    .permission-dialog h2 { font-size: 1.3rem; }
+    .permission-actions { grid-template-columns: 1fr; }
+    .permission-primary, .permission-secondary { width: 100%; min-height: 50px; }
 }
 
 @media (max-width: 430px) {
@@ -351,6 +473,9 @@ button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 3px sol
     .batch-button, .ghost-button { flex: 1; }
     .footer-brand svg { display: none; }
     .footer-creator-badge { max-width: 64%; overflow: hidden; text-overflow: ellipsis; }
+    .permission-icon { width: 48px; height: 48px; border-radius: 14px; }
+    .permission-dialog h2 { margin-right: 2.5rem; }
+    .permission-steps { padding: .85rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

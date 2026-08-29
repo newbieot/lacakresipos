@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-29 — Pop-up Permission Gate
+
+- Added a permission gate that reserves every tab before navigating to a tracking result.
+- If any tab is blocked, all reserved test tabs are closed and bulk actions remain locked until permission verification succeeds.
+- Added clear permission guidance for desktop, Android, and iPhone/iPad browsers.
+- Added a mobile bottom-sheet layout with touch-friendly actions and safe-area spacing.
+- Preserved pending bulk and batch requests so they continue without duplicate tracking tabs after permission is allowed.
+
 ## 2026-07-25 — Firefox Tab Order & Active Result Fix
 
 - Opened tab slots in reverse creation order to match Firefox/Edge adjacent-tab insertion behavior.

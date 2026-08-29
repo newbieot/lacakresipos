@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/styles.css?v=20260725-1">
+    <link rel="stylesheet" href="assets/styles.css?v=20260829-1">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
@@ -121,9 +121,18 @@
                         </button>
                     </div>
 
+                    <div id="popupLockNotice" class="popup-lock-notice" role="status" hidden>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2"/></svg>
+                        <div>
+                            <strong>Lacak Semua dikunci sementara</strong>
+                            <p id="popupLockText">Browser masih memblokir tab. Izinkan pop-up, lalu periksa kembali agar tombol bisa digunakan.</p>
+                        </div>
+                        <button id="showPermissionGuideBtn" type="button">Buka panduan izin</button>
+                    </div>
+
                     <div class="popup-note">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>
-                        <p>Browser mungkin meminta izin membuka beberapa tab. Pilih <strong>Allow pop-ups</strong> untuk situs ini agar seluruh hasil dapat terbuka.</p>
+                        <p>Saat diminta, pilih <strong>Allow pop-ups</strong> untuk lacak.posnew.com. Tombol akan dikunci jika izin belum aktif.</p>
                     </div>
                 </div>
 
@@ -147,7 +156,7 @@
                         </li>
                         <li>
                             <span>03</span>
-                            <div><strong>Izinkan pop-up bila diminta</strong><p>Gunakan tombol batch atau salin link jika browser membatasi tab.</p></div>
+                            <div><strong>Izinkan pop-up bila diminta</strong><p>Jika diblokir, ikuti panduan yang muncul. Pelacakan hanya dilanjutkan setelah izin berhasil diperiksa.</p></div>
                         </li>
                     </ol>
 
@@ -183,6 +192,50 @@
         </section>
     </main>
 
+    <dialog id="popupPermissionDialog" class="permission-dialog" aria-labelledby="popupPermissionTitle" aria-describedby="popupPermissionDescription">
+        <div class="permission-dialog-inner">
+            <button id="closePermissionGuideBtn" class="permission-close" type="button" aria-label="Tutup panduan izin">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>
+            </button>
+
+            <div class="permission-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 10 14"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg>
+            </div>
+            <span class="permission-kicker">Satu langkah lagi</span>
+            <h2 id="popupPermissionTitle">Izinkan pop-up terlebih dahulu</h2>
+            <p id="popupPermissionDescription">Browser memblokir pembukaan tab pelacakan. Pilih <strong>Allow</strong>, lalu kembali ke halaman ini.</p>
+
+            <div class="permission-steps" data-permission-platform="desktop">
+                <ol>
+                    <li>Klik ikon <strong>Pop-up diblokir</strong> di sisi kanan bilah alamat browser.</li>
+                    <li>Pilih <strong>Always allow pop-ups</strong> untuk lacak.posnew.com, lalu klik <strong>Done</strong> atau <strong>Allow</strong>.</li>
+                </ol>
+            </div>
+
+            <div class="permission-steps" data-permission-platform="android" hidden>
+                <ol>
+                    <li>Ketuk pemberitahuan <strong>Pop-up diblokir</strong> yang muncul di layar, lalu pilih <strong>Always show</strong> atau <strong>Allow</strong>.</li>
+                    <li>Jika tidak muncul, buka menu browser → <strong>Setelan situs</strong> → <strong>Pop-up dan pengalihan</strong> → <strong>Izinkan</strong>.</li>
+                </ol>
+            </div>
+
+            <div class="permission-steps" data-permission-platform="ios" hidden>
+                <ol>
+                    <li>Jika pilihan <strong>Allow</strong> muncul di browser, ketuk pilihan tersebut.</li>
+                    <li>Di Safari, buka <strong>Pengaturan iPhone/iPad</strong> → <strong>Apps</strong> → <strong>Safari</strong>, lalu matikan <strong>Blokir Pop-up</strong>. Setelah itu kembali ke halaman ini.</li>
+                </ol>
+            </div>
+
+            <p class="permission-check-note"><span aria-hidden="true"></span>Izin baru dianggap aktif setelah browser berhasil membuka tab pemeriksaan.</p>
+            <div id="permissionCheckStatus" class="permission-check-status" role="alert" hidden></div>
+
+            <div class="permission-actions">
+                <button id="recheckPopupBtn" class="permission-primary" type="button">Sudah pilih Allow — cek &amp; lacak</button>
+                <button id="cancelPermissionBtn" class="permission-secondary" type="button">Nanti saja</button>
+            </div>
+        </div>
+    </dialog>
+
     <footer class="dashboard-footer">
         <div class="footer-brand">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4.5 7.5 7.5 4.2 7.5-4.2M12 12v8.2"/></svg>
@@ -198,6 +251,6 @@
     <noscript>
         <div class="noscript-message">JavaScript harus diaktifkan untuk menggunakan fitur bulk tracking.</div>
     </noscript>
-    <script src="assets/app.js?v=20260725-2" defer></script>
+    <script src="assets/app.js?v=20260829-1" defer></script>
 </body>
 </html>
